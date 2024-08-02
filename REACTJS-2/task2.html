@@ -1,0 +1,23 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.5.7/rxjs.umd.min.js"></script>
+<script type="text/javascript">
+function printCard(num,text){
+            return new rxjs.Observable(function(observer ){
+                const isPrintCard = true
+                if(isPrintCard){
+                    observer.next(num)
+                }else{
+                    observer.error('find alternate')
+                }   
+            });
+            }
+
+printCard(100,'nit')
+.subscribe(
+    function(Successresult){
+        console.log(Successresult);
+    },
+    function(error){
+        console.log(error);
+    }
+    )
+</script>
