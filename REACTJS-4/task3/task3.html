@@ -15,7 +15,7 @@
       <script type="text/babel">
          const App=()=>{
            const [result,setResult]=React.useState('');
-           const [data,setData]=React.useState({})
+           const [data,setData]=React.useState({n1:'',n2:''})
            const fnChange=(event)=>{
              const {id,value}=event.target;
              setData({
@@ -25,31 +25,29 @@
            }
            const fnClick=(opt)=>{
                const {n1,n2}=data
+               if(n1==='' || n2===''){
+                   alert('Please enter both numbers')
+               }
                switch(opt){
                  case 'add': 
-                 setResult(parseInt(n1)+parseInt(n2))
-                 break;
+                    return setResult(parseInt(n1)+parseInt(n2))
                  case 'sub': 
-                 setResult(parseInt(n1)-parseInt(n2))
-                 break;
+                    return setResult(parseInt(n1)-parseInt(n2))
                  case 'mul': 
-                 setResult(parseInt(n1)*parseInt(n2))
-                 break;
+                    return setResult(parseInt(n1)*parseInt(n2))
                  case 'div': 
-                 setResult(parseInt(n1)/parseInt(n2))
-                 break;
+                    return setResult(parseInt(n1)/parseInt(n2))
                  case 'mod': 
-                 setResult(parseInt(n1)%parseInt(n2))
-                 break;
+                    return setResult(parseInt(n1)%parseInt(n2))
                }
            }
           
              return <div>
                     <p>
-                     <b>No1: </b><input id='n1' type="number" onChange={fnChange} />
+                     <b>No1: </b><input id='n1' type="number" onChange={fnChange} value={data.n1}/>
                     </p>
                     <p>
-                     <b>No2: </b><input id='n2' type="number" onChange={fnChange} />
+                     <b>No2: </b><input id='n2' type="number" onChange={fnChange} value={data.n2}/>
                     </p>
                     <p>
                      <button onClick={()=>fnClick("add")}>ADD</button>
