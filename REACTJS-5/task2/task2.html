@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+    
+      function MyApp() {
+        let inputData =''
+        const [name,setName] = React.useState('')
+        const [result,setResult] = React.useState('')
+
+        const onChangeName = event=>setName(event.target.value)
+
+        const onCLickBtnEle = () =>{
+            setResult(name.split('').reverse().join(''))
+        }
+
+        return (
+            <div>
+                <p><b>Name:</b><input type='text' onChange={onChangeName} value={name}/></p>
+                <button onClick={onCLickBtnEle}>Print Reverse</button>
+                <h1>{result}</h1>
+                </div>
+        )
+        
+      }
+
+      const container = document.getElementById('root');
+      const root = ReactDOM.createRoot(container);
+      root.render(<MyApp />);
+
+    </script>
+  </body>
+</html>
