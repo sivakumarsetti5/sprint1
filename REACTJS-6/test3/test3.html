@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8" />
+      <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+      <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+      <!-- Don't use this in production: -->
+      <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+      <style>
+      </style>
+   </head>
+   <body>
+      <div id="root"></div>
+      <script type="text/babel">
+         const data=[
+          'Sachin',
+          'Dhoni',
+          'Sourav',
+          'Kohli',
+          'UV',
+          'Dravid',
+          'Panth',
+          'Zaheer',
+          'Lara',
+          'Pointing'
+         ]
+         function App(){
+            const[name,setName] = React.useState('')
+            const[result,setResult] = React.useState(data)
+
+            const onChangeInput = event =>{
+                const name = (event.target.value)
+                const filteredResults = data.filter(each=> each.toLowerCase().includes(name.toLowerCase()))
+                setResult(filteredResults)
+            }
+            return(
+                <div>
+                    <p><b>Search:</b><input onChange={onChangeInput}/></p>
+                    <ol>
+                        {result.map((each,i)=><li key={i}>{each}</li>)}
+                    </ol>
+                </div>
+            )
+         }
+           const container = document.getElementById('root');
+           const root = ReactDOM.createRoot(container);
+           root.render(<App />);
+         
+      </script>
+   </body>
+</html>
