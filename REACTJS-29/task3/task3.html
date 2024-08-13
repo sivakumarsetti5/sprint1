@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta charset="UTF-8" />
+   <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+   <!-- Don't use this in production: -->
+   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+   <style>
+   </style>
+</head>
+
+<body>
+   <div id="root"></div>
+   <script type="text/babel">
+      function App() {
+         const players = [
+            {
+               name: 'Sachin',
+               runs: 20000,
+               retiredOn: '03-10-2010'
+            },
+            {
+               name: 'Pointing',
+               runs: 16000,
+               retiredOn: '01-01-2015'
+            },
+            {
+               name: 'Lara',
+               runs: 19000,
+               retiredOn: '02-07-2005'
+            }
+
+         ]
+         return (
+            <div>
+               <h1>Players</h1>
+               <table border='2px'>
+                  <thead >
+                     <tr>
+                        <th>Name</th>
+                        <th>Runs</th>
+                        <th>Retaired on</th>
+                     </tr>
+                     </thead>
+                  <tbody>
+                     {players.map((obj,index)=>{
+                        const{name,runs,retiredOn} = obj
+                        return(
+                           <tr key={index}>
+                              <td>{name}</td>
+                              <td>{runs}</td>
+                              <td>{retiredOn}</td>
+                              </tr>
+                        )
+                     })}
+                  </tbody>
+                  </table>
+            </div>
+         )
+      }
+      const container = document.getElementById('root');
+      const root = ReactDOM.createRoot(container);
+      root.render(<App />);
+
+   </script>
+
+</html>
