@@ -1,0 +1,67 @@
+<!--
+Write a code snippet to handling debouncing ?
+Write a textbox add onchange event and handler method.
+Create one more function which have your business requirement code .
+Above method call from onchange handler, but should limit the no of calls(not for every onchange event)
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      function MyApp() {
+        // Debounce function to limit the number of calls to the handler
+function debounce(func, wait) {
+  let timeout;
+  return function(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}
+
+const MyComponent = () => {
+  const [inputValue, setInputValue] = React.useState('');
+
+  // Business logic function
+  const businessLogic = (value) => {
+    console.log('Business logic executed with value:', value);
+    // Add your business logic here
+  };
+
+  // Debounced handler
+  const handleInputChange = useCallback(debounce((event) => {
+    businessLogic(event.target.value);
+  }, 300), []); // Adjust the wait time (300ms) as needed
+
+  return (
+    <div>
+      <input 
+        type="text" 
+        value={inputValue} 
+        onChange={(e) => {
+          setInputValue(e.target.value);
+          handleInputChange(e);
+        }} 
+      />
+    </div>
+  );
+};
+      }
+      const container = document.getElementById('root');
+      const root = ReactDOM.createRoot(container);
+      root.render(<MyApp />);
+
+    </script>
+  </body>
+</html>
