@@ -1,0 +1,1 @@
+// Write code snippet, about closure ?

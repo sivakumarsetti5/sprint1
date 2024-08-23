@@ -1,0 +1,1 @@
+// Write an example code snippet about bind method.
