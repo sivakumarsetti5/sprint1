@@ -1,0 +1,98 @@
+<!--https://kalamschools.com/#/react-programs?name=refreshToken-->
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8" />
+      <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+      <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+      <!-- Don't use this in production: -->
+      <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+      <style>
+       .progress-bar {
+            width: 400px;
+            background: #e3e2e2;
+            height: 20px;
+            position:relative
+        }
+        .progress-bar >div{
+            height:20px;
+            background-color: green;
+        }
+        .progress-bar b{
+            position: absolute;
+            left:50%;
+            top:0px;
+        }
+        .progress-circle{
+            position:relative;
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            margin-bottom: 30px;
+        }
+        .progress-circle >b{
+            position: absolute;
+            left: 33%;
+            top: 40%;
+            color:blue;
+        }
+        
+      </style>
+   </head>
+   <body>
+      <div id="root"></div>
+      <script type="text/babel">
+           function App(){
+               const[token,setToken] = React.useState()
+               const[val,setVal] = React.useState(1)
+               const[width,setWidth] = React.useState(1)
+               const generateToken = ()=>{
+                  const numString  = '1234567890'
+                  let tokenStr = ''
+                  for (let i=1;i<=6;i++){
+                    const index = Math.random()*numString.length
+                    // console.log(index)
+                    tokenStr+=numString.charAt(index)
+                  }
+                  setToken(tokenStr)
+               }
+               React.useEffect(()=>{
+                  generateToken()
+                  const interval = setInterval(()=>{
+                    setVal(prevVal=>{
+                        if(prevVal===30){
+                            generateToken()
+                            return 0
+                        }else{
+                            return prevVal+1
+                        }
+                    })
+                  },1000)
+               },[])
+               React.useEffect(()=>{
+                  setWidth(()=>{
+                    return ((400/30)*val)
+                  })
+               },[val])
+               return(
+                <div>
+                    <h1>{token}</h1>
+                    <div style={{background:`radial-gradient(closest-side,black 79%,transparent 80% 100%),conic-gradient(red ${(100/30)*val}%,green 0)`}} className='progress-circle'>
+                        <b>{30-val} sec</b>
+                    </div>
+                    <div style={{background:`conic-gradient(red ${(100/30)*val}%,yellow 0)`}} className='progress-circle'>
+                        <b>{30-val} sec</b>
+                    </div>    
+                    <div className='progress-bar'>
+                        <div style={{width}}></div>
+                        <b>{30-val} sec</b>
+                    </div>
+                </div>
+               ) 
+           }
+           const container = document.getElementById('root');
+           const root = ReactDOM.createRoot(container);
+           root.render(<App />);
+      </script>
+   </body>
+</html>

@@ -1,0 +1,32 @@
+<!--https://kalamschools.com/#/react-programs?name=modal-->
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8" />
+      <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+      <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+      <!-- Don't use this in production: -->
+      <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+      <style>
+      </style>
+   </head>
+   <body>
+      <div id="root"></div>
+      <script type="text/babel">
+         const App = () =>{
+            return (
+                <div>
+                    <button className='btn btn-dark me-3' onClick={handleInfoModal}>Show info Modal</button>
+                    <button className='btn btn-dark' onClick={handleConfirmModal}>Show confirm Modal</button>
+                </div>
+            )
+         }
+          const container = document.getElementById('root');
+          const root = ReactDOM.createRoot(container);
+          root.render(<App />);
+      </script>
+   </body>
+</html>
+
+
