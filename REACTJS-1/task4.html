@@ -1,0 +1,55 @@
+<!--https://kalamschools.com/#/react-programs?name=box-->
+
+
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8" />
+      <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+      <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+      <!-- Don't use this in production: -->
+      <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+      <style>
+          .box{
+            width: 100px;
+            line-height: 100px;
+            border: 2px solid red;
+            display: inline-block;
+            text-align: center;
+            padding: 20px;
+            margin:20px ;
+          }
+      </style>
+   </head>
+   <body>
+      <div id="root"></div>
+      <script type="text/babel">
+        const Box = (props) =>{
+            const{name,id} = props
+            return(
+                <div className='box'>
+                    {name} {id}
+                </div>
+            )
+        }
+        const App=()=>{
+            return(
+            <div>
+            <div>
+                <Box name='Sivakumar' id='1'/>
+                <Box name='Deekshith' id='2'/>
+            </div>
+            <div>
+                <Box name='Joshitha' id='3'/>
+                <Box name='Sathwik' id='4'/>
+            </div>
+            </div>
+        )
+        }
+        const container = document.getElementById('root');
+        const root = ReactDOM.createRoot(container);
+        root.render(<App />);
+         
+      </script>
+   </body>
+</html>
